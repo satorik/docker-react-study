@@ -7,3 +7,17 @@ before_install:
 
 script:
   - docker run -e CI=true emwrk/docker-react-study npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-react-study"
+  env: "DockerReactStudy-env"
+  bucket_name: "elasticbeanstalk-us-east-1-602166969005"
+  bucket_path: "docker-react-study"
+  on:
+    branch: master
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
