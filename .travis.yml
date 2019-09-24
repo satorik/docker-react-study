@@ -1,0 +1,9 @@
+sudo: required
+services: 
+  - docker
+
+before_install:
+  - docker build -t emwrk/docker-react-study -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true emwrk/docker-react-study npm run test
